@@ -17,7 +17,7 @@ class Booking(models.Model):
     email = models.EmailField()
     quantity = models.PositiveIntegerField(validators=[MinValueValidator(1)])
     booking_time = models.DateTimeField(auto_now_add=True)
-
+    final_price = models.DecimalField(max_digits=6, decimal_places=2, null=True)  # New field for storing the final price after discount
 
     def __str__(self):
         return f"Booking for {self.ride.name} by {self.full_name}"

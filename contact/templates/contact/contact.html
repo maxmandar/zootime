@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5">
+  <h1 class="text-center mb-4">Contact Us</h1>
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <p class="lead text-center">Zoo Time, 213 Jervois Road, Herne Bay, Auckland 1011</p>
+      <p class="lead text-center">Email: zoom.time.contact@gmail.com</p>
+      <p class="lead text-center">Phone: +1-234-567-890</p>
+      
+      <form class="mt-5" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="fullname" class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="fullname" name="fullname" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email Address</label>
+          <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+          <label for="inquiry" class="form-label">Inquiry</label>
+          <textarea class="form-control" id="inquiry" name="inquiry" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

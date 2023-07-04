@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
       <a class="navbar-brand" href="{% url 'homepage' %}">Zoo Time</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,30 +11,39 @@
           </li> -->
 
 
-          {% if user.is_authenticated %}
+          <!-- {% if user.is_authenticated %} -->
 
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'booking' %}">Home</a>
+            <a class="nav-link active" aria-current="page" href="">Home</a>
           </li>
 
-          {% else %}
+          <!-- {% else %} -->
+<!-- 
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'booking' %}">Booking</a>
+          </li>
+
+ -->
+
+          <!-- {% endif %} -->
+
 
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{% url 'booking' %}">Booking</a>
           </li>
 
-
-
-          {% endif %}
-
-
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'booking' %}">Booking</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'about' %}">About us</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'booking' %}">Contact us</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'contact' %}">Contact us</a>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'developer' %}">Developer</a>
+          </li>
+
           <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Dropdown

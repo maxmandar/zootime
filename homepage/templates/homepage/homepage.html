@@ -3,44 +3,61 @@
 {% load static %}
 
 {% block content %}
-<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{% url 'homepage' %}">Zoo Time</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'homepage' %}">Home <span class="sr-only"></span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'booking' %}">Booking</a>
-            </li>
-        </ul>
-    </div>
-</nav> -->
+
 <div class="container">
-    <h2 class="my-4">Our Fun Electronic Rides</h2>
-    <div class="row">
-        {% for ride in rides %}
-            <div class="col-lg-4 col-sm-6 mb-4">
-                <div class="card h-100">
-                    <img class="card-img-top" src="{{ ride.image.url }}" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">{{ ride.name }}</h4>
-                        <p class="card-text">{{ ride.description }}</p>
-                    </div>
+    <h1 class="text-center mb-4">Welcome to Zootime!</h1>
+    <p class="lead">We provide a range of fun entertainment options for kids aged 2 to 10. Our services promote
+        valuable life skills and include a variety of animal rides, fun activities, and products.</p>
+
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+        <!-- 2000 milliseconds = 2 seconds -->
+        <div class="carousel-indicators">
+            {% for ride in rides %}
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}"
+                {% if forloop.first %}class="active" {% endif %} aria-current="true"
+                aria-label="Slide {{ forloop.counter }}"></button>
+            {% endfor %}
+        </div>
+        <div class="carousel-inner">
+            {% for ride in rides %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <img class="d-block w-100" src="{{ ride.image.url }}" alt="{{ ride.name }}"
+                    style="height: 500px; object-fit: contain;">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>{{ ride.name }}</h5>
                 </div>
             </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
+
+    <h1 class="text-center mb-4">Promoting Life Skills</h1>
+    <p class="lead">At Zootime, we believe in the power of play for the development of children. Our activities
+        are designed not only for fun but also to promote life skills that are valuable for children. We offer a variety
+        of activities targeted at children between the ages of 2 to 10.</p>
+
+
 </div>
 
-<footer class="footer mt-auto py-3 bg-light">
+
+<!-- <footer class="footer mt-auto py-3 bg-light">
     <div class="container">
-        <span class="text-muted">Contact Us at: contact@zootime.com</span>
-        <a href="#"><img src="{% static 'homepage/facebook_icon.png' %}" alt="Facebook" style="width:40px;height:40px;"></a>
+        <span class="text-muted">Contact Us at: zoo.time.contact@gmail.com</span>
+        <a href="#"><img src="{% static 'homepage/facebook_icon.png' %}" alt="Facebook"
+                style="width:40px;height:40px;"></a>
         <a href="#"><img src="{% static 'homepage/instagram_icon.png' %}" alt="Instagram"></a>
     </div>
-</footer>
+</footer> -->
+
 {% endblock %}

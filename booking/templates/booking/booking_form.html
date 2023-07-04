@@ -1,16 +1,91 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Book a Ride</h2>
-    <form method="post" class="needs-validation" novalidate>
-        {% csrf_token %}
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        {% endfor %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Book Now</button>
-    </form>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <h2 class="text-center my-4">Book a Ride</h2>
+            <p class="text-center">Book your favorite ride online and get a 5% discount.</p>
+            <form method="post" class="needs-validation" novalidate>
+                {% csrf_token %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+                <!-- Form Fields -->
+                <div class="mb-3">
+                    <label for="id_full_name" class="form-label">Full Name</label>
+                    <input type="text" class="form-control {% if form.full_name.errors %}is-invalid{% endif %}"
+                        id="id_full_name" name="full_name" required>
+                    {% if form.full_name.errors %}
+                    <div class="invalid-feedback">
+                        {{ form.full_name.errors|join:" " }}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="id_email" class="form-label">Email address</label>
+                    <input type="email" class="form-control {% if form.email.errors %}is-invalid{% endif %}"
+                        id="id_email" name="email" required>
+                    {% if form.email.errors %}
+                    <div class="invalid-feedback">
+                        {{ form.email.errors|join:" " }}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="id_ride" class="form-label">Ride</label>
+                    <select class="form-select" id="id_ride" name="ride" required>
+                        {% for ride in rides %}
+                        <option value="{{ ride.id }}">{{ ride.name }} - ${{ ride.price }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="id_quantity" class="form-label">Quantity</label>
+                    <input type="number" class="form-control" id="id_quantity" name="quantity" required min="1"
+                        oninput="updatePrice()">
+                </div>
+                <div class="mb-3" id="total-price" style="display:none;">
+                    <label for="id_total_price" class="form-label">Total Price</label>
+                    <input type="text" class="form-control" id="id_total_price" disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="id_booking_time" class="form-label">Booking Time</label>
+                    <input type="datetime-local" class="form-control" id="id_booking_time" name="booking_time" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Book Now</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // This function updates the total price when the ride or quantity is changed
+    function updatePrice() {
+        var selectElement = document.getElementById('id_ride');
+        var selectedOption = selectElement.options[selectElement.selectedIndex].text;
+        var ridePrice = parseFloat(selectedOption.split('- $')[1]);
+
+        var quantity = parseInt(document.getElementById('id_quantity').value);
+        if (isNaN(quantity) || quantity <= 0) {
+            quantity = 0;
+            document.getElementById('id_quantity').value = 0;
+        }
+
+        var totalPrice = ridePrice * quantity * 0.95;
+        if (isNaN(totalPrice)) {
+            totalPrice = 0;
+        }
+
+        document.getElementById('id_total_price').value = '$' + totalPrice.toFixed(2);
+        document.getElementById('total-price').style.display = 'block';
+    }
+
+    // Call updatePrice function to initialize total price
+    updatePrice();
+</script>
 {% endblock %}

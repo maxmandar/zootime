@@ -11,6 +11,13 @@
       
       <form class="mt-5" method="POST">
         {% csrf_token %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+
         <div class="mb-3">
           <label for="fullname" class="form-label">Full Name</label>
           <input type="text" class="form-control" id="fullname" name="fullname" required>

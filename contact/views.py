@@ -19,6 +19,6 @@ def contact(request):
             ['zoo.time.contact@gmail.com'], 
         )
         
-        messages.success(request, 'Your message has been sent. Thank you for contacting us.')
+        messages.success(request, 'Your message has been sent to our team. Thank you for contacting us.')
 
     return render(request, 'contact/contact.html')

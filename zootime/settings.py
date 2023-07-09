@@ -101,8 +101,7 @@ DATABASES = {
         'USER': os.getenv('DATABASE_USER'),
         'PASSWORD': os.getenv('DATABASE_PASSWORD'),
         'HOST': os.getenv('DATABASE_HOST'),
-        'PORT': os.getenv('DATABASE_PORT'),
-        'OPTIONS': {'sslmode': 'require'},
+        'PORT': os.getenv('DATABASE_PORT')
     }
 }
 
@@ -175,27 +174,3 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 
-
-# AWS_ACCESS_KEY_ID = 'AKIAR4XGHSCVHDQIWGXJ '
-# AWS_SECRET_ACCESS_KEY = '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'
-# AWS_STORAGE_BUCKET_NAME = 'zootime'
-# AWS_S3_SIGNATURE_NAME = 's3v4',
-# AWS_S3_REGION_NAME = 'us-east-1'
-# AWS_S3_FILE_OVERWRITE = False
-# AWS_DEFAULT_ACL =  None
-# AWS_S3_VERITY = True
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-
-
-# DEFAULT_FILE_STORAGE = 'core.azure_storage.AzureMediaStorage'
-# STATICFILES_STORAGE = 'core.azure_storage.AzureStaticStorage'
-# AZURE_ACCOUNT_NAME = os.getenv('AZURE_ACCOUNT_NAME')
-# AZURE_ACCOUNT_KEY = os.getenv('AZURE_ACCOUNT_KEY')
-# AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
-
-# STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/static/'
-# STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-# MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/media/'
-# MEDIA_ROOT = BASE_DIR / 'mediafiles'

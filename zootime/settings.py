@@ -92,17 +92,7 @@ WSGI_APPLICATION = 'zootime.wsgi.application'
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'zootime',
-#         'USER': 'zootimesa',
-#         'PASSWORD': 'Welcome1234',
-#         'HOST': 'zootime.cog3k7gbuo63.us-east-1.rds.amazonaws.com',
-#         'PORT':'5432',
 
-#     }
-# }
 
 DATABASES = {
     'default': {
@@ -112,6 +102,7 @@ DATABASES = {
         'PASSWORD': os.getenv('DATABASE_PASSWORD'),
         'HOST': os.getenv('DATABASE_HOST'),
         'PORT': os.getenv('DATABASE_PORT'),
+        'OPTIONS': {'sslmode': 'require'},
     }
 }
 
